@@ -1,0 +1,46 @@
+server {
+    listen 80;
+    listen [::]:80;
+    server_name default;
+    root /var/www/html;
+    # Logs
+    access_log  /var/log/nginx/accesslog;
+    error_log   /var/log/nginx/error.log;
+
+    index index.php index.html;
+
+    location ~ ^/favicon.ico$ {
+        root /usr/share/roundcube/skins/default/images;
+        log_not_found off;
+        access_log off;
+        expires max;
+    }
+
+    location = /robots.txt {
+        allow all;
+        log_not_found off;
+        access_log off;
+    }
+
+    location ~ ^/(README|INSTALL|LICENSE|CHANGELOG|UPGRADING)$ {
+        deny all;
+    }
+    location ~ ^/(bin|SQL)/ {
+        deny all;
+    }
+
+    # Deny all attempts to access hidden files such as .htaccess, .htpasswd, .DS_Store (Mac).
+    location ~ /\. {
+        deny all;
+        access_log off;
+        log_not_found off;
+    }
+
+    location ~ \.php$ {
+        try_files $uri =404;
+        include         /etc/nginx/fastcgi_params;
+		fastcgi_pass    unix:/var/run/php5-fpm.sock;
+        fastcgi_param   SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_index   index.php;
+    }
+}
