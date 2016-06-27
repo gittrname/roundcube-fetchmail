@@ -19,6 +19,7 @@ RUN apt-get install -y php5-curl \
     php5-mysql \
     php5-sqlite \
     php5-xsl \
+    php-mail \
     php-mail-mimedecode \
     php-pear \
     git
