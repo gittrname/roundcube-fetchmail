@@ -19,6 +19,7 @@ RUN php5-curl \
     php5-mysql \
     php5-sqlite \
     php5-xsl \
+    php-mail-mimedecode \
     php-pear \
     git
 
