@@ -11,7 +11,7 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log
 RUN ln -sf /dev/stderr /var/log/nginx/error.log
 
 # Install php and git
-RUN php5-curl \
+RUN apt-get install -y php5-curl \
     php5-fpm \
     php5-gd \
     php5-intl \
