@@ -19,6 +19,7 @@ RUN apt-get install -y fetchmail postfix cron rsyslog
 # Configure Fetchmail
 COPY assets/etc/cron.d/fetchmail /etc/cron.d/fetchmail
 COPY assets/var/mail/fetchmail.pl /var/mail/fetchmail.pl
+RUN chmod 644 /etc/cron.d/fetchmail
 
 # Install php, git, perl
 RUN apt-get install -y \
