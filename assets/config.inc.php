@@ -10,7 +10,11 @@ $config['managesieve_conn_options'] = [
         'allow_self_signed' => true,
     ],
 ];
+$config['default_host'] = getenv('ROUNDCUBE_DEFAULT_HOST');
 $config['default_port'] = 143;
+$config['smtp_host'] = getenv('ROUNDCUBE_SMTP_HOST');
 $config['smtp_port'] = 587;
 $config['smtp_user'] = '%u';
 $config['smtp_pass'] = '%p';
+
+$config['plugins'] = array('carddav', 'managesieve', 'fetchmail');
