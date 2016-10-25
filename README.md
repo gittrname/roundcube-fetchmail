@@ -1,15 +1,21 @@
 # Roundcube
 ---
-Made because I needed a simple roundcube latest version installation.  
+jpco/roundcubeにfetchmail, carddav, managesieveの３つのプラグインを追加したもの 
 
-I myself use environment variables for configuration:
+■設定例
 ---
-    ROUNDCUBE_USERNAME_DOMAIN=example.loc
-    ROUNDCUBE_DEFAULT_HOST=tls://dovecot
-    ROUNDCUBE_SMTP_SERVER=tls://postfix
-    ROUNDCUBE_PRODUCT_NAME='MyDomain - Webmail'
+    version: '2'
+    services:
+      roundcube:
+      build: roundcube
+      container_name: roundcube
+      ports:
+        - "80:80"
+    extra_hosts:
+      - "fetch.example.com:127.0.0.1"
+    environment:
+      - "ROUNDCUBE_DEFAULT_HOST=imap.example.com"
+      - "ROUNDCUBE_SMTP_SERVER=smtp.example.com"
+      - "ROUNDCUBE_USERNAME_DOMAIN=example.com"
+      - "HOSTNAME=fetchmail.example.com"
 
-## Mapping
-For Mapping these locations are used:
-
-    /var/mail/roundcube/sqlite.db
