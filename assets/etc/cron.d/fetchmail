@@ -1,2 +1,2 @@
 # /etc/cron.d/fetchmail
-*/15 * * * * /var/mail/fetchmail.pl > /dev/null
+0,15,30,45 * * * * /var/mail/fetchmail.pl > /dev/null
