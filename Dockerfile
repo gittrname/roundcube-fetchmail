@@ -82,6 +82,8 @@ COPY assets/plugins-password-file.php /var/www/html/plugins/password/drivers/fil
 RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+VOLUME /var/mail/roundcube
+
 ENTRYPOINT ["entrypoint.sh"]
 CMD ["nginx", "-g", "daemon off;"]
 WORKDIR /var/www/html
